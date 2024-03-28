@@ -44,7 +44,9 @@ export default function Home() {
         <span className="text-xl">
           you’re looking for a developer that likes to get stuff done,
         </span>
-        <div className="mt-5 bg-textClr w-36 flex justify-center rounded-full p-3">
+        <span className="mt-5 text-boxBClr">{`</p>`}</span>
+
+        <div className="mt-8 bg-textClr w-36 flex justify-center rounded-full p-3">
           <button className="text-buttontxtClr">View my CV</button>
         </div>
       </div>
