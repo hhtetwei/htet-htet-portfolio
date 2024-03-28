@@ -17,6 +17,10 @@ const config: Config = {
     colors: {
       baseClr: '#9D76C1',
       textClr: '#FFF9F9',
+      boxAClr: '#E7A020',
+      boxBClr: '#A5EA6C',
+      basetextClr: '#FFFFFF',
+      buttontxtClr: '#7E36B8',
     },
   },
   plugins: [],

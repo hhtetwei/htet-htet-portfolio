@@ -20,6 +20,11 @@ body {
   background-color: white;
 }
 
+/* .video-container {
+  height: 500px;
+  width: 3000px;
+} */
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
