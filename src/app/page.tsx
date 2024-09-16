@@ -229,11 +229,12 @@ export default function Home() {
               </div>
               <div className="mt-5 lg:text-lg text-justify">
                 <span>
-                  At MyanCare, I played a key role in developing the company's
-                  landing page, managing servers, and primarily focusing on
-                  front-end tasks. This experience was instrumental in shaping
-                  my abilities and resilience, evident when I was promoted from
-                  intern to junior web developer within three months.
+                  At MyanCare, I played a key role in developing the
+                  company&apos;s landing page, managing servers, and primarily
+                  focusing on front-end tasks. This experience was instrumental
+                  in shaping my abilities and resilience, evident when I was
+                  promoted from intern to junior web developer within three
+                  months.
                 </span>
               </div>
               <div className="mt-5 lg:text-lg text-justify">
@@ -315,7 +316,7 @@ export default function Home() {
             </span>
 
             <span className="text-justify mt-3">
-              At MyanCare, I played a key role in developing the company's
+              At MyanCare, I played a key role in developing the company&apos;s
               landing page, managing servers, and primarily focusing on
               front-end tasks. This experience was instrumental in shaping my
               abilities and resilience, evident when I was promoted from intern
@@ -622,7 +623,7 @@ export default function Home() {
         <div className="bg-baseClr p-3">
           <div className="flex justify-center">
             <span className="text-boxBClr">My Skill,</span>
-            <span>I'm thriving to never stop learning</span>
+            <span>I&apos;m thriving to never stop learning</span>
           </div>
 
           <div className="flex justify-center mt-5 mb-5">
