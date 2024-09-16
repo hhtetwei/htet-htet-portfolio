@@ -1,36 +1,89 @@
+'use client';
+
+import '@fortawesome/fontawesome-free/css/all.css';
 import { Divider } from '@mui/material';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faTimes, faCode } from '@fortawesome/free-solid-svg-icons';
+import Image from 'next/image';
 import Link from 'next/link';
+import { IconButton } from '@mui/material';
+import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <div className="w-full h-full">
-      <div className="w-full bg-baseClr p-10 flex justify-between lg:flex ">
-        <div className="w-[60%] lg:mt-2 lg:mx-20">
-          <span className="text-lg lg:text-2xl text-textClr font-bold">
-            Htet Htet Portfolio
-          </span>
-        </div>
-        <div className="w-[45%] lg:w-[30%] text-textClr lg:flex lg:mx-14">
-          <div className="w-full flex flex-wrap justify-end lg:items-center">
-            <span className="lg:mr-2 lg:p-2 text-lg">Home</span>
-            <div className="hidden 2xl:block xl:block">
-              <div className="h-14 border-r border-textClr mt-1"></div>
+      <div className="w-full bg-baseClr flex justify-between lg:p-10 p-5">
+        <div className="w-full lg:w-[40%] flex lg:mt-2 lg:mx-20 justify-between">
+          <div className="text-lg lg:text-2xl text-textClr font-bold flex gap-3">
+            <div className="w-full p-5 xs:p-2 text-2xl">
+              Htet Htet Portfolio
+              <FontAwesomeIcon icon={faCode} className="w-8 lg:mt-0" />
             </div>
           </div>
-          <div className="w-full flex flex-wrap justify-end lg:items-center">
-            <Link href={'http://linkedin.com/in/wei-wei-4238662b3'}>
-              Linkdin
+
+          {/* <div className="hidden xs:block xxs:block s:block ss:block">
+            <div className="flex justify-end items-end mt-4 xs:p-2">
+              <IconButton onClick={toggleMenu}>
+                {isMenuOpen ? (
+                  <FontAwesomeIcon icon={faTimes} className="text-2xl" />
+                ) : (
+                  <FontAwesomeIcon icon={faBars} className="text-2xl" />
+                )}
+              </IconButton>
+            </div>
+          </div> */}
+        </div>
+
+        <div className="xxs:hidden xs:hidden block s:hidden ss:hidden">
+          <div className="w-full flex gap-10 mr-10 p-5">
+            <Link href="">
+              <div className="text-2xl flex">
+                <span className="text-headerClr">Home</span>
+              </div>
             </Link>
-          </div>
-          <div className="w-full flex flex-wrap justify-end lg:items-center">
-            <Link href={'https://t.me/@nabiweii'}>Telegram</Link>
-          </div>
-          <div className="w-full flex flex-wrap justify-end lg:items-center">
-            <Link href={'https://github.com/hhtetwei'}>Github</Link>
+
+            <div className="h-10 border-l border-boxAClr"></div>
+            <Link href="">
+              <div className="text-xl flex gap-2">
+                <Image
+                  src="/image/linkedin.svg"
+                  alt=""
+                  width={20}
+                  height={20}
+                />
+                <span className="mt-1">Linkdin</span>
+              </div>
+            </Link>
+
+            <Link href="">
+              <div className="text-xl flex gap-2">
+                <Image
+                  src="/image/telegram.svg"
+                  alt=""
+                  width={25}
+                  height={25}
+                />
+                <span className="mt-1">Facebook</span>
+              </div>
+            </Link>
+
+            <Link href="">
+              <div className="text-xl flex gap-2">
+                <Image src="/image/github.svg" alt="" width={30} height={30} />
+                <span className="mt-1">Github</span>
+              </div>
+            </Link>
           </div>
         </div>
       </div>
-      <Divider />
     </div>
   );
 }
