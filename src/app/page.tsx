@@ -1,20 +1,17 @@
 // import video from '../../public/image/videotest.mp4';
 'use client';
-import { useEffect, useState } from 'react';
-import {
-  animate,
-  motion,
-  useAnimation,
-  useMotionValue,
-  useTransform,
-} from 'framer-motion';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { useEffect } from 'react';
+import { motion, useAnimation } from 'framer-motion';
+
 import Image from 'next/image';
 import './globals.css';
-import { Card, Icon } from '@mui/material';
+import { Card, Icon, LinearProgress, Typography } from '@mui/material';
 import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
-import { TypeAnimation } from 'react-type-animation';
+import SkillTree from '@/components/SkillsTree';
+import Contact from '@/components/Contact';
+import Footer from '@/components/Footer';
+import { useRouter } from 'next/router';
 
 const projects = [
   {
@@ -46,42 +43,36 @@ const projects = [
     name: 'SEO Landing Page App Router',
   },
 ];
+
+const skills = [
+  { name: 'JavaScript', level: 80, image: '/image/javascript.png' },
+  { name: 'React', level: 80, image: '/image/react.svg' },
+  { name: 'Next Js', level: 80, image: '/image/next.png' },
+  { name: 'Node Js', level: 80, image: '/image/node.svg' },
+  { name: 'Nest Js', level: 50, image: '/image/nest.svg' },
+  { name: 'TypeScript', level: 80, image: '/image/tsc.png' },
+  { name: 'MongoDB', level: 80, image: '/image/mongodb.svg' },
+  { name: 'SQL/Prisma', level: 50, image: '/image/prisma2.png' },
+];
 export default function Home() {
   const controls = useAnimation();
-  const controlsTitle = useAnimation(); // Controls for "My Experience" title animation
-  const controlsPara1 = useAnimation(); // Controls for first paragraph animation
-  const controlsPara2 = useAnimation(); // Controls for second paragraph animation
-  const controlsPara3 = useAnimation();
-  const { ref, inView } = useInView({ triggerOnce: false });
-  const [isFlipped, setIsFlipped] = useState(false);
-  const [showTitle, setShowTitle] = useState(false);
+
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+    initialInView: true,
+    rootMargin: '0px 0px -100px 0px',
+  });
 
   useEffect(() => {
     if (inView) {
-      setIsFlipped(true);
-      setShowTitle(true);
-    } else {
-      setIsFlipped(false);
-      setShowTitle(false);
+      controls.start('visible');
     }
-  }, [controls, inView]);
-
-  // const cursorVariants = {
-  //   blinking: {
-  //     opacity: [0, 0, 1, 1],
-  //     transition: {
-  //       duration: 1,
-  //       repeat: Infinity,
-  //       repeatDelay: 0,
-  //       ease: 'linear',
-  //       times: [0, 0.5, 0.5, 1],
-  //     },
-  //   },
-  // };
+  }, [inView, controls]);
 
   return (
-    <div className="w-full h-full overflow-hidden">
-      <div className="relative xxs:hidden xs:hidden s:hidden ss:hidden overflow-hidden">
+    <div className="w-full h-full overflow-hidden dark:text-basetextClr dark:bg-black">
+      <div className="relative md:hidden s:hidden lg:hidden xxs:hidden block overflow-hidden">
         <video
           controls
           preload="none"
@@ -100,24 +91,28 @@ export default function Home() {
         </video>
 
         <div className="z-100 w-full inset-0 absolute flex justify-between">
-          <div className="w-[45%] mt-20 p-5">
+          <div className="w-[45%] mt-40 p-5">
             <span className="text-basetextClr text-2xl flex justify-center">
-              Hello! This is Htet Htet Wai.
+              Hi, I am Htet Htet Wai – Turning Ideas Into Code!
             </span>
             <span className="text-basetextClr text-lg flex justify-center text-justify ml-10 mt-5">
-              I am a passionate Full-Stack Web Developer with a strong
-              foundation in both front-end and back-end technologies. With solid
-              experience in these areas, I excel in working within teams and
-              possess strong communication skills. I am also multilingual,
-              proficient in English, Chinese, and Burmese.
+              I am an enthusiastic and passionate Full-Stack Web Developer with
+              a solid foundation in both front-end and back-end technologies. My
+              experience spans a wide range of projects, where I have honed my
+              skills and built a strong reputation for delivering high-quality
+              work.
             </span>
             <span className="text-basetextClr text-lg flex justify-center text-justify ml-10 mt-5">
-              If you’re looking for a developer who gets things done, I am the
-              one you can trust. I deliver high-quality work and can be relied
-              upon to handle tasks skillfully and efficiently.
+              Fluent in English, Chinese, and Burmese, I bring a global
+              perspective to my work, ensuring smooth interactions across
+              diverse teams and clients. If you’re looking for a developer who
+              not only meets but exceeds expectations, I’m the one you can count
+              on. With a proven track record of tackling complex challenges and
+              delivering results, I handle tasks with precision, efficiency, and
+              dedication.Let’s build something amazing together!
             </span>
 
-            <div className="flex justify-start ml-10 mt-5">
+            <div className="flex justify-start ml-10 mt-5 gap-5">
               <Link
                 href="./files/Htet-Htet-Resume.pdf"
                 passHref
@@ -127,10 +122,16 @@ export default function Home() {
                   View My CV
                 </button>
               </Link>
+
+              <Link href="./files/Bachelor-Degree.pdf" passHref target="_blank">
+                <button className="bg-boxBClr w-40 p-2 rounded-full">
+                  Check My Degree
+                </button>
+              </Link>
             </div>
           </div>
 
-          <div className="w-[45%] absolute z-100 inset-0 bottom-0 left-1/2 ml-24">
+          <div className="w-[45%] h-full absolute z-100 inset-0 bottom-0 left-1/2 ml-24 top-10">
             <img
               src="/image/hhw.jpg"
               alt="Your Image"
@@ -140,26 +141,70 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-full h-80 relative hidden s:block xs:block ss:block">
-        {/* First Box */}
-        <div className="bg-boxAClr w-[70%] md:w-4/5 xl:w-3/5 h-60 absolute "></div>
+      <div className="w-full h-full relative md:block sm:block s:block xs:block hidden">
+        <div className="absolute md:-top-10 md:left-20 md:w-80 md:h-80 bg-boxAClr s:w-60 s:h-60 s:-top-5 s:left-5 z-0"></div>
 
-        {/* Second Box */}
-        <div className="bg-boxBClr w-[60%] md:w-3/5 xl:w-2/5 h-52 s:h-60 md:h-60 ss:h-64 xl:h-80 absolute top-40 right-5 md:right-10 xl:right-20 z-20"></div>
-
-        {/* Image Overlapping Both Boxes */}
-        <div className="absolute top-14 left-1/2 transform -translate-x-1/2 w-[80%] md:w-[60%] xl:w-[50%] z-30">
+        <div className="absolute md:top-52 md:right-24 md:w-80 md:h-80 bg-boxBClr s:w-60 s:h-60 s:right-3 s:top-24 z-0 "></div>
+        <div className="md:w-[60%] s:w-[80%] mt-20 md:translate-x-40  s:translate-x-11 z-50">
           <img
             src="/image/hhw.jpg"
             alt="Your Image"
             className="w-full h-full object-cover"
           />
         </div>
+
+        <div className="w-full flex flex-col mt-20 p-[1rem]">
+          <div id="home">
+            <span className="text-black text-2xl flex justify-center">
+              Hi, I am Htet Htet Wai – Turning Ideas Into Code!
+            </span>
+            <span className="text-black text-lg flex justify-center text-justify mt-5">
+              I am an enthusiastic and passionate Full-Stack Web Developer with
+              a solid foundation in both front-end and back-end technologies. My
+              experience spans a wide range of projects, where I have honed my
+              skills and built a strong reputation for delivering high-quality
+              work.
+            </span>
+            <span className="text-black text-lg flex justify-center text-justify mt-5">
+              Fluent in English, Chinese, and Burmese, I bring a global
+              perspective to my work, ensuring smooth interactions across
+              diverse teams and clients. If you’re looking for a developer who
+              not only meets but exceeds expectations, I’m the one you can count
+              on. With a proven track record of tackling complex challenges and
+              delivering results, I handle tasks with precision, efficiency, and
+              dedication.Let’s build something amazing together!
+            </span>
+          </div>
+
+          <div className="flex justify-center mt-5 gap-5">
+            <Link href="./files/Htet-Htet-Resume.pdf" passHref target="_blank">
+              <button className="bg-boxBClr w-32 p-2 rounded-full flex items-center justify-center group">
+                <span className="relative transition-all duration-300 group-hover:mr-2">
+                  View My CV
+                </span>
+                <span className="opacity-0 translate-x-[-10px] transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
+                  ➔
+                </span>
+              </button>
+            </Link>
+
+            <Link href="./files/Bachelor-Degree.pdf" passHref target="_blank">
+              <button className="bg-boxBClr w-40 p-2 rounded-full flex items-center justify-center group">
+                <span className="relative transition-all duration-300 group-hover:mr-2">
+                  Check My Degree
+                </span>
+                <span className="opacity-0 translate-x-[-10px] transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
+                  ➔
+                </span>
+              </button>
+            </Link>
+          </div>
+        </div>
       </div>
 
-      <div className="xxs:hidden xs:hidden s:hidden ss:hidden block p-[2rem]">
+      {/* <div className="">
         <div className="w-full justify-between flex mt-20 p-[1rem]">
-          <div className="w-[45%] flex justify-center relative">
+          <div className="w-[45%] h-72 flex justify-center relative">
             <div className="bg-baseClr rounded-3xl w-[70%]">
               <Image
                 src="/image/lofi.webp"
@@ -168,6 +213,37 @@ export default function Home() {
                 height={500}
                 className="rounded-xl w-full flex justify-end mt-4"
               />
+
+              <div className="relative bg-baseClr rounded-3xl">
+                <Image
+                  src="/image/experience.gif"
+                  alt=""
+                  width={500}
+                  height={500}
+                  className="rounded-xl w-full flex justify-end mt-20"
+                />
+
+                <div className="absolute left-3/4 top-2/3 transform translate-x-10">
+                  <div className="w-40 h-20 bg-buttontxtClr mb-4 rounded-lg">
+                    <div className="flex flex-col justify-center p-2">
+                      <span className="mt-2 font-bold flex gap-1">
+                        <div>
+                          <Image
+                            src="/image/star.svg"
+                            alt=""
+                            width={20}
+                            height={20}
+                          />
+                        </div>
+                        <span className="text-grey">Experience</span>
+                      </span>
+                      <span className="font-bold text-xl flex justify-center text-textClr">
+                        2 Years
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="absolute -left-3 top-36 transform -translate-y-28">
@@ -191,101 +267,74 @@ export default function Home() {
                 </div>
               </div>
             </div>
-
-            <div className="absolute -right-5 top-2/3 transform translate-y-0">
-              <div className="w-40 h-20 bg-buttontxtClr mb-4 rounded-lg">
-                <div className="flex flex-col justify-center p-2">
-                  <span className="mt-2 font-bold flex gap-1">
-                    <div>
-                      <Image
-                        src="/image/star.svg"
-                        alt=""
-                        width={20}
-                        height={20}
-                      />
-                    </div>
-                    <span className="text-grey">Experience</span>
-                  </span>
-                  <span className="font-bold text-xl flex justify-center text-textClr">
-                    1Y 5M
-                  </span>
-                </div>
-              </div>
-            </div>
           </div>
+
           <div className="w-[50%] flex justify-start p-[1rem]">
             <div className="flex flex-col mr-10" id="myexp">
-              <motion.div className="font-bold lg:text-3xl text-baseClr ">
+              <div className="font-bold text-2xl text-baseClr ">
                 My Experience
-              </motion.div>
-              <div className="mt-5 lg:text-lg text-justify">
-                <motion.span>
-                  During my undergraduate studies, commencing in 2019, I
-                  actively engaged in numerous projects, assignments, and
-                  presentations. My professional journey took a significant step
-                  forward in December 2023 when I secured an internship at
-                  MyanCare Telemedicine.
-                </motion.span>
               </div>
+
               <div className="mt-5 lg:text-lg text-justify">
+                <div className="text-md font-bold">
+                  Full-Stack Software Engineer
+                </div>
                 <span>
-                  At MyanCare, I played a key role in developing the
-                  company&apos;s landing page, managing servers, and primarily
-                  focusing on front-end tasks. This experience was instrumental
-                  in shaping my abilities and resilience, evident when I was
-                  promoted from intern to junior web developer within three
-                  months.
+                  Here’s a refined version without the "from" and "currently"
+                  phrasing: I designed and developed RESTful APIs using Node.js,
+                  Express.js, and NestJS for mobile and web applications.
+                  Specializing in front-end development with React.js and
+                  Next.js, I created SEO-focused landing pages and dynamic admin
+                  dashboards for call centers. My work included implementing
+                  OAuth authentication with Google, Facebook, and Firebase, as
+                  well as managing CI/CD pipelines to streamline development and
+                  deployment processes.
                 </span>
               </div>
               <div className="mt-5 lg:text-lg text-justify">
                 <span>
-                  I excel both as a team player and working independently,
-                  leveraging strong communication skills to effectively
-                  collaborate with colleagues. I take pride in my capacity to
-                  explain technical concepts to team members and thrive in
-                  environments where teamwork is valued.
+                  I migrated a legacy vanilla JavaScript application to React.js
+                  using the Remix framework, enhanced user experience by
+                  designing intuitive interfaces with Shadcn, and managed the
+                  "Users" module for the admin dashboard. I also conducted
+                  software testing with Jest to ensure secure and reliable
+                  authentication workflows. Combining front-end expertise with
+                  strong communication skills, I consistently deliver seamless
+                  user experiences and efficient development processes.
+                </span>
+              </div>
+              <div className="mt-5 lg:text-lg text-justify">
+                <span>
+                  I excel as both an independent contributor and a team player,
+                  using strong communication skills to simplify technical
+                  concepts and foster collaboration. As a fast learner and hard
+                  worker, I bring innovative solutions to projects and manage
+                  multiple tasks effectively, consistently delivering
+                  high-quality results on time. I’m proficient in a wide range
+                  of scripting languages and tools, always seeking to expand my
+                  web development knowledge and design skills.
                 </span>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
-      <div className="hidden xs:block xxs:block s:block ss:block">
-        <div className="w-full flex flex-col mt-5 p-[1rem]">
-          <div className="w-40 h-20 bg-buttontxtClr mb-4 rounded-lg">
-            <div className="flex flex-col justify-center p-2 ">
-              <span className="mt-2 font-bold flex gap-1">
-                <div>
-                  <Image
-                    src="/image/star.svg"
-                    alt=""
-                    width={20}
-                    height={20}
-                    className=""
-                  />
-                </div>
-                <span className="text-grey">Project Count</span>
-              </span>
-              <span className="font-bold text-xl flex justify-center text-textClr">
-                10+ Done
-              </span>
-            </div>
-          </div>
-          <div className="w-full flex justify-center relative">
-            <div className="bg-baseClr rounded-3xl w-full h-full">
-              <Image
-                src="/image/lofi.webp"
-                alt=""
-                width={500}
-                height={500}
-                className="rounded-xl w-full flex justify-end"
-              />
-            </div>
-          </div>
-          <div className="flex justify-end">
-            <div className="w-40 h-20 bg-buttontxtClr mb-4 rounded-lg mt-2 ">
-              <div className="flex flex-col justify-center p-2">
+      <div id="about">
+        <div className="font-bold text-2xl text-baseClr flex justify-center">
+          My Experience
+        </div>
+        <div className="relative rounded-3xl w-full flex justify-center mt-5">
+          <Image
+            src="/image/lofi.webp"
+            alt=""
+            width={500}
+            height={500}
+            className="rounded-xl bg-baseClr w-[80%] s:w-full mt-4"
+          />
+          <div className="absolute -left-3 top-36 s:top-64 transform -translate-y-28">
+            <div className="w-40 h-20 bg-buttontxtClr mb-4 rounded-lg">
+              <div className="flex flex-col justify-center p-2 ">
                 <span className="mt-2 font-bold flex gap-1">
                   <div>
                     <Image
@@ -296,49 +345,88 @@ export default function Home() {
                       className=""
                     />
                   </div>
-                  <span className="text-grey">Experience</span>
+                  <span className="text-grey">Project Count</span>
                 </span>
                 <span className="font-bold text-xl flex justify-center text-textClr">
-                  1Y 5M
+                  10+ Done
                 </span>
               </div>
             </div>
           </div>
-          <div className="flex flex-col mt-5">
-            <span className="flex justify-center font-bold text-buttontxtClr">
-              My Experiences
-            </span>
-            <span className="text-justify mt-3">
-              During my undergraduate studies, commencing in 2019, I actively
-              engaged in numerous projects, assignments, and presentations. My
-              professional journey took a significant step forward in December
-              2023 when I secured an internship at MyanCare Telemedicine.
-            </span>
+        </div>
 
-            <span className="text-justify mt-3">
-              At MyanCare, I played a key role in developing the company&apos;s
-              landing page, managing servers, and primarily focusing on
-              front-end tasks. This experience was instrumental in shaping my
-              abilities and resilience, evident when I was promoted from intern
-              to junior web developer within three months.
-            </span>
+        <div className="relative rounded-3xl">
+          <Image
+            src="/image/experience.gif"
+            alt=""
+            width={500}
+            height={500}
+            className="rounded-xl w-full flex justify-end mt-20"
+          />
 
-            <span className="text-justify mt-3">
-              I excel both as a team player and working independently,
-              leveraging strong communication skills to effectively collaborate
-              with colleagues. I take pride in my capacity to explain technical
-              concepts to team members and thrive in environments where teamwork
-              is valued.
-            </span>
+          <div className="absolute left-3/4 top-2/3 s:left-2/4 transform translate-x-10">
+            <div className="w-40 h-20 bg-buttontxtClr mb-4 rounded-lg">
+              <div className="flex flex-col justify-center p-2">
+                <span className="mt-2 font-bold flex gap-1">
+                  <div>
+                    <Image
+                      src="/image/star.svg"
+                      alt=""
+                      width={20}
+                      height={20}
+                    />
+                  </div>
+                  <span className="text-grey">Experience</span>
+                </span>
+                <span className="font-bold text-xl flex justify-center text-textClr">
+                  2 Years
+                </span>
+              </div>
+            </div>
           </div>
+        </div>
+
+        <div className="mt-5 text-lg text-justify">
+          <div className="text-md font-bold">Full-Stack Software Engineer</div>
+          <span className="mt-2">
+            I designed and developed RESTful APIs using Node.js, Express.js, and
+            NestJS for mobile and web applications. Specializing in front-end
+            development with React.js and Next.js, I created SEO-focused landing
+            pages and dynamic admin dashboards for call centers. My work
+            included implementing OAuth authentication with Google, Facebook,
+            and Firebase, as well as managing CI/CD pipelines to streamline
+            development and deployment processes.
+          </span>
+        </div>
+        <div className="mt-5 text-lg text-justify">
+          <span>
+            I migrated a legacy vanilla JavaScript application to React.js using
+            the Remix framework, enhanced user experience by designing intuitive
+            interfaces with Shadcn, and managed the "Users" module for the admin
+            dashboard. I also conducted software testing with Jest to ensure
+            secure and reliable authentication workflows. Combining front-end
+            expertise with strong communication skills, I consistently deliver
+            seamless user experiences and efficient development processes.
+          </span>
+        </div>
+        <div className="mt-5 text-lg text-justify">
+          <span>
+            I excel as both an independent contributor and a team player, using
+            strong communication skills to simplify technical concepts and
+            foster collaboration. As a fast learner and hard worker, I bring
+            innovative solutions to projects and manage multiple tasks
+            effectively, consistently delivering high-quality results on time.
+            I’m proficient in a wide range of scripting languages and tools,
+            always seeking to expand my web development knowledge and design
+            skills.
+          </span>
         </div>
       </div>
 
       <div>
-        <div className="w-full flex flex-col p-[2rem]">
+        <div id="projects" className="w-full flex flex-col p-[2rem]">
           <span className="lg:mt-20 lg:text-3xl flex lg:justify-center text-3xl">
-            Here are some additional projects I have completed, aside from my
-            work at MyanCare
+            Here's my recent work projects
           </span>
 
           <div className="flex mt-10 mb-10 ss:flex-col s:flex-col xs:flex-col">
@@ -347,7 +435,7 @@ export default function Home() {
                 projects.map((p, idx) => {
                   return (
                     <Card
-                      className="w-[30%] p-5 border border-grey xs:w-full s:w-full ss:w-full"
+                      className="w-[30%] p-5 border border-grey s:w-full sm:w-full md:w-full"
                       key={idx}
                     >
                       <div>
@@ -408,418 +496,97 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="xxs:hidden xs:hidden s:hidden ss:hidden block">
-        <div className="bg-buttontxtClr  flex flex-col">
-          <div className="flex flex-col items-center mt-10 mb-10">
-            <span className="flex justify-center lg:text-3xl text-textClr">
-              <span className="text-boxBClr">My Skills,</span> I am striving to
-              never stop learning and improving.
+      <div className="hidden xl:block twoXL:block threeXL:block fourXL:block fiveXL:block">
+        <div className="bg-buttontxtClr flex flex-col">
+          <div className="flex flex-col mt-10 mb-10">
+            <span className="flex s:flex-wrap justify-center text-2xl s:text-xl text-textClr">
+              <span className="text-boxBClr s:w-full s:flex s:justify-center">
+                My Skills,
+              </span>
+              I am striving to never stop learning and improving.
             </span>
-            <motion.div
-              ref={ref}
-              className="w-64 h-32 bg-textClr rounded-lg shadow-md cursor-pointer relative mt-10"
-              initial={{ rotateY: 0 }}
-              animate={{ rotateY: isFlipped ? 180 : 0 }}
-              transition={{ duration: 0.6 }}
-              style={{
-                transformStyle: 'preserve-3d', // Ensure 3D space for proper rotation
-              }}
-            >
-              <div className="absolute inset-0 flex justify-center items-center backface-hidden">
-                <div className={`text-center  ${isFlipped ? 'hidden' : ''}`}>
-                  {/* Front Side Content */}
-                  <div className="flex flex-col items-center justify-center h-28">
-                    <div className="">
+
+            <div>
+              <div
+                ref={ref}
+                className="grid grid-cols-2 gap-6 w-full p-[2rem] m-5"
+              >
+                {skills.map((skill, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 1, delay: index * 0.2 }}
+                    className="flex flex-col mb-4"
+                  >
+                    <div className="flex items-center mb-2 text-gray-700">
                       <img
-                        src="/image/monitor.svg"
-                        alt=""
-                        width={40}
-                        height={40}
-                        className="w-10 mt-3"
+                        src={skill.image}
+                        alt={`${skill.name} logo`}
+                        className="w-6 h-6 mr-2"
                       />
+                      <span>{skill.name}</span>
                     </div>
-                    <div className="text-buttontxtClr">Web Development</div>
-                    <div className="text-buttontxtClr">JS-REACT-NODE</div>
-                  </div>
-                </div>
 
-                <div
-                  className={`text-center  ${!isFlipped ? 'hidden' : ''}`}
-                  style={{
-                    transform: 'rotateY(180deg)', // Flip back side content
-                  }}
-                >
-                  <div className="flex flex-col items-center justify-center h-28">
-                    <div className="">
-                      <img
-                        src="/image/monitor.svg"
-                        alt=""
-                        width={40}
-                        height={40}
-                        className="w-10 mt-3"
-                      />
+                    <div className="relative w-full bg-gray-200 rounded-md h-2">
+                      <motion.div
+                        initial={{ width: '0%' }}
+                        animate={
+                          inView
+                            ? { width: `${skill.level}%` }
+                            : { width: '0%' }
+                        }
+                        transition={{ duration: 1, delay: index * 0.2 }}
+                        className="absolute top-0 left-0 h-full rounded-md bg-blue-500"
+                      >
+                        <LinearProgress
+                          variant="determinate"
+                          value={skill.level}
+                          sx={{
+                            backgroundColor: '#2d333b',
+                            '& .MuiLinearProgress-bar': {
+                              backgroundColor: '#586069',
+                            },
+                          }}
+                          className="rounded-md h-2"
+                        />
+                      </motion.div>
+
+                      <span
+                        className={`absolute text-sm text-gray-500`}
+                        style={{
+                          top: '-20px',
+                          left:
+                            skill.level > 10
+                              ? `calc(${skill.level}% - 15px)`
+                              : '10px',
+                        }}
+                      >
+                        {skill.level}%
+                      </span>
                     </div>
-                    <div className="text-buttontxtClr">Web Development</div>
-                    <div className="text-buttontxtClr">JS-REACT-NODE</div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-          <div className="flex justify-center gap-32 mt-10 mb-10 p-[2rem]">
-            <div className="w-28 h-20">
-              <div className="rounded-full flex justify-center">
-                <Image
-                  src="/image/js4.webp"
-                  alt=""
-                  width={80}
-                  height={80}
-                  className="rounded-full bg-textClr p-3 w-20 h-20"
-                />
-              </div>
-              <div className="mt-5 lg:text-3xl flex justify-center text-textClr">
-                JavaScript
-              </div>
-            </div>
-            <div className="w-28 h-20">
-              <div className="rounded-full flex justify-center ">
-                <Image
-                  src="/image/next2.jpg"
-                  alt=""
-                  width={80}
-                  height={80}
-                  className="rounded-full bg-textClr p-3 w-20 h-20"
-                />
-              </div>
-              <div className="flex justify-center mt-5 lg:text-3xl text-textClr">
-                Next JS
-              </div>
-            </div>
-            <div className="w-32 h-20">
-              <div className="rounded-full flex justify-center">
-                <Image
-                  src="/image/node.png"
-                  alt=""
-                  width={80}
-                  height={80}
-                  className="rounded-full bg-textClr w-20 h-20 p-3"
-                />
-              </div>
-              <div className="flex justify-center mt-5 lg:text-3xl text-textClr">
-                Node JS
-              </div>
-            </div>
-            <div className="w-28 h-20">
-              <div className="rounded-full  flex justify-center">
-                <Image
-                  src="/image/react2.svg"
-                  alt=""
-                  width={80}
-                  height={80}
-                  className="rounded-full bg-textClr w-20 h-20 p-3"
-                />
-              </div>
-              <div className="flex justify-center mt-5 lg:text-3xl text-textClr">
-                React
-              </div>
-            </div>
-
-            <div className="w-32 h-20">
-              <div className="rounded-full  flex justify-center">
-                <Image
-                  src="/image/mongo.svg"
-                  alt=""
-                  width={80}
-                  height={80}
-                  className="rounded-full bg-textClr w-20 h-20 p-3"
-                />
-              </div>
-              <div className="flex justify-center mt-5 lg:text-3xl text-textClr">
-                MongoDB
-              </div>
-            </div>
-
-            <div className="w-32 h-20">
-              <div className="rounded-full flex justify-center">
-                <Image
-                  src="/image/github-logo.png"
-                  alt=""
-                  width={80}
-                  height={80}
-                  className="rounded-full bg-textClr w-20 h-20 p-3"
-                />
-              </div>
-              <div className="flex justify-center mt-5 lg:text-3xl text-textClr">
-                GitHub
-              </div>
-            </div>
-
-            <div className="mr-5">
-              <div className="rounded-full bg-textClr w-20 h-20 flex justify-center items-center overflow-hidden">
-                <div className="relative w-full h-full overflow-hidden">
-                  <Image
-                    src="/image/ts2.png"
-                    alt=""
-                    width={80}
-                    height={80}
-                    className="absolute inset-0 bg-textClr p-4"
-                    style={{ borderRadius: 'none' }}
-                  />
-                </div>
-              </div>
-              <div className="mt-5 lg:text-3xl lg:-mx-5 text-textClr">
-                TypeScript
+                  </motion.div>
+                ))}
               </div>
             </div>
           </div>
+
           <div>
             <hr className="border-textClr" />
-          </div>
-
-          <div className="w-full flex flex-wrap justify-between p-[3rem]">
-            <div className="w-[45%] text-textClr">
-              <div>Developed By Htet Htet</div>
-            </div>
-            <div className="w-[45%] flex gap-20 justify-end text-textClr">
-              <Link href={'http://linkedin.com/in/wei-wei-4238662b3'}>
-                <div className="text-textClr flex gap-2">
-                  <Image
-                    src="/image/linkedin.svg"
-                    alt="Linkedin"
-                    width={25}
-                    height={25}
-                  />
-                  <div className="mt-1">Linkedin</div>
-                </div>
-              </Link>
-              <Link href={'https://t.me/@nabiweii'}>
-                <div className="text-textClr flex gap-2">
-                  <Image
-                    src="/image/telegram.svg"
-                    alt="Linkedin"
-                    width={25}
-                    height={25}
-                  />
-                  <div className="mt-1">Telegram</div>
-                </div>
-              </Link>
-              <Link href={'https://github.com/hhtetwei'}>
-                <div className="text-textClr flex gap-2">
-                  <Image
-                    src="/image/github.svg"
-                    alt="Linkedin"
-                    width={30}
-                    height={30}
-                  />
-                  <div className="mt-1">Github</div>
-                </div>
-              </Link>
-            </div>
           </div>
         </div>
       </div>
 
-      <div className="hidden xs:block xxs:block s:block ss:block">
-        <div className="bg-baseClr p-3">
-          <div className="flex justify-center">
-            <span className="text-boxBClr">My Skill,</span>
-            <span>I&apos;m thriving to never stop learning</span>
-          </div>
+      <div className="hidden md:block sm:block s:block xs:block">
+        <SkillTree />
+      </div>
 
-          <div className="flex justify-center mt-5 mb-5">
-            <motion.div
-              ref={ref}
-              className="w-40 bg-textClr rounded-lg shadow-md cursor-pointer relative"
-              initial={{ rotateY: 0 }}
-              animate={{ rotateY: isFlipped ? 180 : 0 }}
-              transition={{ duration: 0.6 }}
-              style={{
-                transformStyle: 'preserve-3d', // Ensure 3D space for proper rotation
-              }}
-            >
-              <div className="flex flex-col justify-center items-center backface-hidden p-3">
-                <div className={`text-center  ${isFlipped ? 'hidden' : ''}`}>
-                  <img
-                    src="/image/monitor.svg"
-                    alt=""
-                    width={10}
-                    height={10}
-                    className="w-8"
-                  />
-                  <div className="text-buttontxtClr">Web Development</div>
-                  <div className="text-buttontxtClr">JS-REACT-NODE</div>
-                </div>
-              </div>
+      <div className="">
+        <Contact />
+      </div>
 
-              <div
-                className={`text-center mb-3 ${!isFlipped ? 'hidden' : ''}`}
-                style={{
-                  transform: 'rotateY(180deg)', // Flip back side content
-                }}
-              >
-                <div className="flex flex-col items-center justify-center">
-                  <div className="">
-                    <img
-                      src="/image/monitor.svg"
-                      alt=""
-                      width={10}
-                      height={10}
-                      className="w-8"
-                    />
-                  </div>
-                  <div className="text-buttontxtClr">Web Development</div>
-                  <div className="text-buttontxtClr">JS-REACT-NODE</div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          <div className="w-full h-full flex justify-center flex-wrap mt-10">
-            {/* First Image and Text */}
-            <div className="flex flex-col items-center mx-4">
-              <div className="rounded-full bg-textClr p-3">
-                <Image
-                  src="/image/js4.webp"
-                  alt=""
-                  width={80}
-                  height={80}
-                  className="rounded-full"
-                />
-              </div>
-              <div className="text-xl mt-2 text-textClr">JavaScript</div>
-            </div>
-
-            {/* Second Image and Text */}
-            <div className="flex flex-col items-center mx-4">
-              <div className="rounded-full bg-textClr p-3">
-                <Image
-                  src="/image/next2.jpg"
-                  alt=""
-                  width={80}
-                  height={80}
-                  className="rounded-full bg-textClr p-3 w-20 h-20"
-                />
-              </div>
-              <div className="text-xl mt-2 text-textClr">Next</div>
-            </div>
-
-            {/* Third Image and Text */}
-            <div className="flex flex-col items-center mx-4">
-              <div className="rounded-full bg-textClr p-3">
-                <Image
-                  src="/image/node.png"
-                  alt=""
-                  width={80}
-                  height={80}
-                  className="rounded-full bg-textClr w-20 h-20 p-3"
-                />
-              </div>
-              <div className="text-xl mt-2 text-textClr">Node JS</div>
-            </div>
-
-            <div className="flex flex-col items-center mx-4">
-              <div className="rounded-full bg-textClr p-3">
-                <Image
-                  src="/image/react2.svg"
-                  alt=""
-                  width={80}
-                  height={80}
-                  className="rounded-full bg-textClr w-20 h-20 p-3"
-                />
-              </div>
-              <div className="text-xl mt-2 text-textClr">React</div>
-            </div>
-
-            <div className="flex flex-col items-center mx-4">
-              <div className="rounded-full bg-textClr p-3">
-                <Image
-                  src="/image/mongo.svg"
-                  alt=""
-                  width={80}
-                  height={80}
-                  className="rounded-full bg-textClr w-20 h-20 p-3"
-                />
-              </div>
-              <div className="text-xl mt-2 text-textClr">MongoDB</div>
-            </div>
-
-            <div className="flex flex-col items-center mx-4">
-              <div className="rounded-full bg-textClr p-3">
-                <Image
-                  src="/image/github-logo.png"
-                  alt=""
-                  width={80}
-                  height={80}
-                  className="rounded-full bg-textClr w-20 h-20 p-3"
-                />
-              </div>
-              <div className="text-xl mt-2 text-textClr">GitHub</div>
-            </div>
-
-            <div className="flex flex-col items-center mx-4">
-              <div className="rounded-full bg-textClr p-3">
-                <Image
-                  src="/image/ts2.png"
-                  alt=""
-                  width={80}
-                  height={80}
-                  className="rounded-full bg-textClr w-20 h-20 p-3"
-                />
-              </div>
-              <div className="text-xl mt-2 text-textClr">TypeScript</div>
-            </div>
-
-            <div className="w-full mt-8">
-              <hr className="border-textClr border-solid border-t-1 w-full" />
-            </div>
-
-            <div className="w-full h-full flex flex-wrap justify-between p-[1rem] mt-5 mb-5">
-              <div className="w-[45%] text-textClr">
-                <div>
-                  Developed By Htet Htet <FavoriteBorderIcon />
-                </div>
-              </div>
-
-              <div className="w-[45%] flex flex-col justify-end items-end">
-                <Link href={'http://linkedin.com/in/wei-wei-4238662b3'}>
-                  <div className="text-textClr flex gap-2 ">
-                    <Image
-                      src="/image/linkedin.svg"
-                      alt="Linkedin"
-                      width={25}
-                      height={25}
-                    />
-                    <div className="mt-1">Linkedin</div>
-                  </div>
-                </Link>
-
-                <Link href={'https://t.me/@nabiweii'}>
-                  <div className="text-textClr flex gap-2 mt-2">
-                    <Image
-                      src="/image/telegram.svg"
-                      alt="Linkedin"
-                      width={25}
-                      height={25}
-                    />
-                    <div className="mt-1">Telegram</div>
-                  </div>
-                </Link>
-
-                <Link href={'https://github.com/hhtetwei'}>
-                  <div className="text-textClr flex gap-2 mt-2 mr-3">
-                    <Image
-                      src="/image/github.svg"
-                      alt="Linkedin"
-                      width={30}
-                      height={30}
-                    />
-                    <div className="mt-1">Github</div>
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="">
+        <Footer />
       </div>
     </div>
   );

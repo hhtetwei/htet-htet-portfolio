@@ -1,89 +1,121 @@
 'use client';
 
+import { useEffect, useRef, useState } from 'react';
 import '@fortawesome/fontawesome-free/css/all.css';
-import { Divider } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes, faCode } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faCode, faTimes } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
 import Link from 'next/link';
-import { IconButton } from '@mui/material';
-import { useState } from 'react';
-import { usePathname } from 'next/navigation';
+import ModeToggleButton from './ModeToggleButton';
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      setIsDarkMode(true);
+      document.documentElement.classList.add('dark');
+    } else {
+      setIsDarkMode(false);
+      document.documentElement.classList.remove('dark');
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+    const newTheme = !isDarkMode ? 'dark' : 'light';
+    document.documentElement.classList.toggle('dark', newTheme === 'dark');
+    localStorage.setItem('theme', newTheme);
+  };
+
+  const handleScroll = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
-    <div className="w-full h-full">
-      <div className="w-full bg-baseClr flex justify-between lg:p-10 p-5">
+    <div className="w-full h-10 fixed z-50">
+      <div className="w-full bg-baseClr flex justify-between p-2">
         <div className="w-full lg:w-[40%] flex lg:mt-2 lg:mx-20 justify-between">
           <div className="text-lg lg:text-2xl text-textClr font-bold flex gap-3">
             <div className="w-full p-5 xs:p-2 text-2xl">
               Htet Htet Portfolio
-              <FontAwesomeIcon icon={faCode} className="w-8 lg:mt-0" />
+              <FontAwesomeIcon icon={faCode} className="w-8" />
             </div>
           </div>
-
-          {/* <div className="hidden xs:block xxs:block s:block ss:block">
-            <div className="flex justify-end items-end mt-4 xs:p-2">
-              <IconButton onClick={toggleMenu}>
-                {isMenuOpen ? (
-                  <FontAwesomeIcon icon={faTimes} className="text-2xl" />
-                ) : (
-                  <FontAwesomeIcon icon={faBars} className="text-2xl" />
-                )}
-              </IconButton>
-            </div>
-          </div> */}
         </div>
 
-        <div className="xxs:hidden xs:hidden block s:hidden ss:hidden">
-          <div className="w-full flex gap-10 mr-10 p-5">
-            <Link href="">
-              <div className="text-2xl flex">
-                <span className="text-headerClr">Home</span>
-              </div>
-            </Link>
+        {/* Desktop Links */}
+        <div className="flex md:hidden s:hidden sm:hidden gap-10 mr-10 p-5">
+          <Link href="">
+            <div className="text-2xl flex">
+              <span className="text-headerClr">Home</span>
+            </div>
+          </Link>
 
-            <div className="h-10 border-l border-boxAClr"></div>
-            <Link href="">
-              <div className="text-xl flex gap-2">
-                <Image
-                  src="/image/linkedin.svg"
-                  alt=""
-                  width={20}
-                  height={20}
-                />
-                <span className="mt-1">Linkdin</span>
-              </div>
-            </Link>
+          <div className="h-10 border-l border-boxAClr"></div>
+          <Link href="">
+            <div className="text-xl flex gap-2">
+              <Image src="/image/linkedin.svg" alt="" width={20} height={20} />
+              <span className="mt-1">LinkedIn</span>
+            </div>
+          </Link>
 
-            <Link href="">
-              <div className="text-xl flex gap-2">
-                <Image
-                  src="/image/telegram.svg"
-                  alt=""
-                  width={25}
-                  height={25}
-                />
-                <span className="mt-1">Facebook</span>
-              </div>
-            </Link>
+          <Link href="">
+            <div className="text-xl flex gap-2">
+              <Image src="/image/github.svg" alt="" width={30} height={30} />
+              <span className="mt-1">Github</span>
+            </div>
+          </Link>
 
-            <Link href="">
-              <div className="text-xl flex gap-2">
-                <Image src="/image/github.svg" alt="" width={30} height={30} />
-                <span className="mt-1">Github</span>
-              </div>
-            </Link>
+          <div className="-mt-2">
+            <ModeToggleButton />
           </div>
+        </div>
+
+        {/* Mobile/Tablet Menu Icon */}
+        <div className="hidden s:block sm:block md:block items-center mt-5">
+          <FontAwesomeIcon
+            icon={menuOpen ? faTimes : faBars}
+            className="text-2xl text-textClr cursor-pointer"
+            onClick={() => setMenuOpen(!menuOpen)}
+          />
         </div>
       </div>
+
+      {menuOpen && (
+        <div className="bg-baseClr w-full p-5 flex flex-col items-center xl:hidden twoXL:hidden threeXL:hidden">
+          <div
+            className="cursor-pointer text-headerClr mb-4 text-lg"
+            onClick={() => handleScroll('home')}
+          >
+            Home
+          </div>
+          <div
+            className="cursor-pointer text-headerClr mb-4 text-lg"
+            onClick={() => handleScroll('about')}
+          >
+            About
+          </div>
+          <div
+            className="cursor-pointer text-headerClr mb-4 text-lg"
+            onClick={() => handleScroll('projects')}
+          >
+            Projects
+          </div>
+          <div
+            className="cursor-pointer text-headerClr mb-4 text-lg"
+            onClick={() => handleScroll('contact')}
+          >
+            Contact
+          </div>
+        </div>
+      )}
     </div>
   );
 }

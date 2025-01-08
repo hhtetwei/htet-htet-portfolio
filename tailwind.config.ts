@@ -6,6 +6,8 @@ const config: Config = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  darkMode: 'class',
+  lightMode: 'class',
   theme: {
     extend: {
       backgroundImage: {
@@ -17,10 +19,15 @@ const config: Config = {
 
     screens: {
       xxs: { min: '320px', max: '360px' },
-      xs: { min: '360px', max: '380px' },
-      s: { min: '380px', max: '420px' },
-      ss: { min: '420px', max: '480px' },
-      xl: { min: '1500px', max: '1800px' },
+      s: { min: '360px', max: '640px' },
+      sm: { min: '640px', max: '768px' },
+      md: { min: '768px', max: '1024px' },
+      lg: { min: '1024px', max: '1280px' },
+      xl: { min: '1280px', max: '1536px' },
+      twoXL: { min: '1536', max: '2000px' },
+      threeXL: { min: '2000px', max: '3500px' },
+      fourXL: { min: '3500px', max: '4500px' },
+      fiveXL: { min: '4500px', max: '6000px' },
     },
 
     colors: {
@@ -32,6 +39,8 @@ const config: Config = {
       buttontxtClr: '#7E36B8',
       grey: '#B4B4B8',
       headerClr: '#EAB16C',
+      black: '#000000',
+      red: '#FF0000 ',
     },
   },
   plugins: [],
