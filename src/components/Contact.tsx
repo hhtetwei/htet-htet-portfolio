@@ -63,7 +63,7 @@ export default function Contact() {
       className="p-[1rem] mt-8 mb-8 dark:text-basetextClr dark:bg-black"
     >
       <ToastContainer />
-      <div className="text-black text-2xl flex justify-center dark:text-basetextClr">
+      <div className="text-baseClr font-bold text-2xl flex justify-center dark:text-basetextClr">
         Contact Me
       </div>
       <div className="flex w-full flex-wrap mt-8 gap-5">

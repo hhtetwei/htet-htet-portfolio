@@ -30,7 +30,9 @@ const SkillBar = () => {
   return (
     <div className="bg-buttontxtClr flex flex-col">
       <div className="flex flex-col flex-wrap mt-10 mb-10">
-        <span className="flex justify-center text-boxBClr">My skills</span>
+        <span className="flex justify-center text-boxBClr text-2xl">
+          My skills
+        </span>
         <span className="flex justify-center">
           I am striving to never stop learning and improving
         </span>
