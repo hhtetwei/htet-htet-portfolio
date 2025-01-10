@@ -106,11 +106,12 @@ export default function Home() {
             <span className="text-basetextClr text-lg flex justify-center text-justify ml-10 mt-5">
               Fluent in English, Chinese, and Burmese, I bring a global
               perspective to my work, ensuring smooth interactions across
-              diverse teams and clients. If you’re looking for a developer who
-              not only meets but exceeds expectations, I’m the one you can count
-              on. With a proven track record of tackling complex challenges and
-              delivering results, I handle tasks with precision, efficiency, and
-              dedication.Let’s build something amazing together!
+              diverse teams and clients. If you&apos;re looking for a developer
+              who not only meets but exceeds expectations, I&apos;m the one you
+              can count on. With a proven track record of tackling complex
+              challenges and delivering results, I handle tasks with precision,
+              efficiency, and dedication.Let&apos;s build something amazing
+              together!
             </span>
 
             <div className="flex justify-start ml-10 mt-5 gap-5">
@@ -211,11 +212,11 @@ export default function Home() {
             <span className="text-black text-lg flex justify-center text-justify mt-5 dark:text-basetextClr">
               Fluent in English, Chinese, and Burmese, I bring a global
               perspective to my work, ensuring smooth interactions across
-              diverse teams and clients. If you’re looking for a developer who
-              not only meets but exceeds expectations, I’m the one you can count
-              on. With a proven track record of tackling complex challenges and
-              delivering results, I handle tasks with precision, efficiency, and
-              dedication.Let’s build something amazing together!
+              diverse teams and clients. If you&apos;re looking for a developer
+              who not only meets but exceeds expectations, I&apos;m the one you
+              can count on. With a proven track record of tackling complex
+              challenges and delivering results, I handle tasks with precision,
+              efficiency, and dedication.Let’s build something amazing together!
             </span>
           </div>
 

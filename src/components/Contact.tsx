@@ -123,11 +123,11 @@ export default function Contact() {
 
         <div className="w-[45%] s:w-full sm:w-full md:w-full">
           <div className="text-justify">
-            Let’s make great things happen together! Whether you have a quick
-            question, a collaboration idea, or just want to say hi, I’d love to
-            hear from you. You can reach me via email, phone, or connect with me
-            on LinkedIn and GitHub. Prefer a quicker response? Give me a call at{' '}
-            {}
+            Let&apos;s make great things happen together! Whether you have a
+            quick question, a collaboration idea, or just want to say hi,
+            I&apos;d love to hear from you. You can reach me via email, phone,
+            or connect with me on LinkedIn and GitHub. Prefer a quicker
+            response? Give me a call at {}
             <span className="text-black font-bold dark:text-basetextClr">
               0622643784
             </span>{' '}

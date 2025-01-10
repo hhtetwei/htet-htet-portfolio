@@ -80,11 +80,11 @@ export const Experience = () => {
         <span>
           I migrated a legacy vanilla JavaScript application to React.js using
           the Remix framework, enhanced user experience by designing intuitive
-          interfaces with Shadcn, and managed the "Users" module for the admin
-          dashboard. I also conducted software testing with Jest to ensure
-          secure and reliable authentication workflows. Combining front-end
-          expertise with strong communication skills, I consistently deliver
-          seamless user experiences and efficient development processes.
+          interfaces with Shadcn, and managed the &quot;User&quot; module for
+          the admin dashboard. I also conducted software testing with Jest to
+          ensure secure and reliable authentication workflows. Combining
+          front-end expertise with strong communication skills, I consistently
+          deliver seamless user experiences and efficient development processes.
         </span>
       </div>
       <div className="mt-5 text-lg text-justify">
