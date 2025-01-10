@@ -94,7 +94,7 @@ export default function Home() {
         <div className="z-100 w-full inset-0 absolute flex justify-between">
           <div className="w-[45%] mt-40 p-5">
             <span className="text-basetextClr text-2xl flex justify-center">
-              Hi, I am Htet Htet Wai – Turning Ideas Into Code!
+              Hi, I am Htet Htet Wai - Turning Ideas Into Code!
             </span>
             <span className="text-basetextClr text-lg flex justify-center text-justify ml-10 mt-5">
               I am an enthusiastic and passionate Full-Stack Web Developer with
@@ -216,7 +216,8 @@ export default function Home() {
               who not only meets but exceeds expectations, I&apos;m the one you
               can count on. With a proven track record of tackling complex
               challenges and delivering results, I handle tasks with precision,
-              efficiency, and dedication.Let’s build something amazing together!
+              efficiency, and dedication.Let&apos;s build something amazing
+              together!
             </span>
           </div>
 
