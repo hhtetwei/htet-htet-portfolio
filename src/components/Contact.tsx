@@ -74,7 +74,7 @@ export default function Contact() {
                 type="text"
                 placeholder="Enter your name"
                 {...register('name')}
-                className={`p-1 w-full focus:outline-none border-2 rounded-md text-gray-900 ${errors.name ? 'border-red-500' : 'border-grey'}`}
+                className={`p-2 w-full focus:outline-none border-2 rounded-md text-gray-900 ${errors.name ? 'border-red-500' : 'border-grey'}`}
               />
               {errors.name && (
                 <p className="text-red text-xs mt-1">{errors.name.message}</p>
@@ -86,7 +86,7 @@ export default function Contact() {
                 type="text"
                 placeholder="Enter your email"
                 {...register('reply_to')}
-                className={`p-1 w-full focus:outline-none border-2 rounded-md text-gray-900 ${errors.reply_to ? 'border-red-500' : 'border-grey'}`}
+                className={`p-2 w-full focus:outline-none border-2 rounded-md text-gray-900 ${errors.reply_to ? 'border-red-500' : 'border-grey'}`}
               />
               {errors.reply_to && (
                 <p className="text-red text-xs mt-1">
@@ -148,7 +148,7 @@ export default function Contact() {
                   height={25}
                 />
                 <div className="mt-1 text-black font-bold dark:text-basetextClr">
-                  Follow me on Linkdin
+                  Linkdin
                 </div>
               </div>
             </Link>
@@ -165,20 +165,20 @@ export default function Contact() {
                   height={25}
                 />
                 <div className="mt-1 text-black font-bold dark:text-basetextClr">
-                  Connect me via Email
+                  Email
                 </div>
               </div>
             </a>
             <Link href={'https://github.com/hhtetwei'} target="_blank">
-              <div className="text-textClr flex gap-2 mt-3">
+              <div className="text-textClr flex gap-1 mt-3">
                 <Image
                   src="/image/github.svg"
-                  alt="Linkedin"
+                  alt="Github"
                   width={30}
                   height={30}
                 />
                 <div className="mt-1 text-black font-bold dark:text-basetextClr">
-                  Follow me on Github
+                  Github
                 </div>
               </div>
             </Link>

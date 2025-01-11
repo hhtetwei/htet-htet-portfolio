@@ -59,14 +59,18 @@ export default function Header() {
           </Link>
 
           <div className="h-10 border-l border-boxAClr"></div>
-          <Link href="">
+          <Link
+            href={'http://linkedin.com/in/wei-wei-4238662b3'}
+            passHref
+            target="_blank"
+          >
             <div className="text-xl flex gap-2">
               <Image src="/image/linkedin.svg" alt="" width={20} height={20} />
               <span className="mt-1">LinkedIn</span>
             </div>
           </Link>
 
-          <Link href="">
+          <Link href={'https://github.com/hhtetwei'} passHref target="_blank">
             <div className="text-xl flex gap-2">
               <Image src="/image/github.svg" alt="" width={30} height={30} />
               <span className="mt-1">Github</span>

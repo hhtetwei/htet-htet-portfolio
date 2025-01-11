@@ -1,4 +1,3 @@
-// import video from '../../public/image/videotest.mp4';
 'use client';
 import { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
@@ -46,15 +45,16 @@ const projects = [
 ];
 
 const skills = [
-  { name: 'JavaScript', level: 80, image: '/image/javascript.png' },
-  { name: 'React', level: 80, image: '/image/react.svg' },
-  { name: 'Next Js', level: 80, image: '/image/next.png' },
+  { name: 'JavaScript', level: 90, image: '/image/javascript.png' },
+  { name: 'React', level: 85, image: '/image/react.svg' },
+  { name: 'Next Js', level: 85, image: '/image/next.png' },
   { name: 'Node Js', level: 80, image: '/image/node.svg' },
-  { name: 'Nest Js', level: 50, image: '/image/nest.svg' },
-  { name: 'TypeScript', level: 80, image: '/image/tsc.png' },
-  { name: 'MongoDB', level: 80, image: '/image/mongodb.svg' },
-  { name: 'SQL/Prisma', level: 50, image: '/image/prisma2.png' },
+  { name: 'Nest Js', level: 65, image: '/image/nest.svg' },
+  { name: 'TypeScript', level: 85, image: '/image/tsc.png' },
+  { name: 'MongoDB', level: 85, image: '/image/mongodb.svg' },
+  { name: 'SQL/Prisma', level: 55, image: '/image/prisma2.png' },
 ];
+
 export default function Home() {
   const controls = useAnimation();
 
@@ -115,7 +115,11 @@ export default function Home() {
             </span>
 
             <div className="flex justify-start ml-10 mt-5 gap-5">
-              <Link href="./files/HtetHtetWai-CV.pdf" passHref target="_blank">
+              <Link
+                href="./files/HtetHtetWai-CvForm.pdf"
+                passHref
+                target="_blank"
+              >
                 <Button
                   className="relative px-6 py-3 font-bold bg-boxBClr text-black 
              rounded-xl shadow-md transform transition-all duration-300
@@ -222,7 +226,11 @@ export default function Home() {
           </div>
 
           <div className="flex justify-center mt-5 gap-2">
-            <Link href="./files/HtetHtetWai-CV.pdf" passHref target="_blank">
+            <Link
+              href="./files/HtetHtetWai-CvForm.pdf"
+              passHref
+              target="_blank"
+            >
               <Button
                 className="group relative px-4 py-2 font-bold bg-boxBClr text-black text-xs
              rounded-lg shadow-md transform transition-all duration-300
@@ -444,7 +452,7 @@ export default function Home() {
                         libraries such as MUI and tailwind.
                       </div>
                       <div className="mt-3">
-                        <Link href={p.source}>
+                        <Link href={p.source} passHref target="_blank">
                           <button className="text-buttontxtClr flex rounded-lg gap-2">
                             <div className="font-bold">Source Code</div>
                             <div>
@@ -460,7 +468,7 @@ export default function Home() {
                         </Link>
                       </div>
                       <div className="mt-3">
-                        <Link href={p.url}>
+                        <Link href={p.url} passHref target="_blank">
                           <button className="text-buttontxtClr flex rounded-lg gap-2">
                             <div className="font-bold">View Demo</div>
                             <div>
@@ -516,23 +524,23 @@ export default function Home() {
                     </div>
 
                     <div className="relative w-full bg-gray-200 rounded-md h-2">
+                      <div className="absolute top-0 left-0 w-full h-full bg-gray-300 rounded-md"></div>
+
                       <motion.div
                         initial={{ width: '0%' }}
-                        animate={
-                          inView
-                            ? { width: `${skill.level}%` }
-                            : { width: '0%' }
-                        }
+                        animate={inView ? { width: '100%' } : { width: '0%' }}
                         transition={{ duration: 1, delay: index * 0.2 }}
-                        className="absolute top-0 left-0 h-full rounded-md bg-blue-500"
+                        className="absolute top-0 left-0 h-full w-full"
                       >
                         <LinearProgress
                           variant="determinate"
                           value={skill.level}
                           sx={{
-                            backgroundColor: '#2d333b',
+                            width: '100%',
+                            backgroundColor: '#586069',
                             '& .MuiLinearProgress-bar': {
-                              backgroundColor: '#586069',
+                              width: `${skill.level}%`,
+                              backgroundColor: '#2d333b',
                             },
                           }}
                           className="rounded-md h-2"
@@ -540,7 +548,7 @@ export default function Home() {
                       </motion.div>
 
                       <span
-                        className={`absolute text-sm text-gray-500`}
+                        className="absolute text-sm text-gray-500"
                         style={{
                           top: '-20px',
                           left:
