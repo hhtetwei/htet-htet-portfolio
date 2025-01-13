@@ -4,14 +4,13 @@ import { motion, useAnimation } from 'framer-motion';
 
 import Image from 'next/image';
 import './globals.css';
-import { Button, Card, Icon, LinearProgress, Typography } from '@mui/material';
+import { Button, Card, LinearProgress } from '@mui/material';
 import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
 import SkillTree from '@/components/SkillsTree';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import { Experience } from '@/components/experience';
-import Recommendations from '@/components/RecSwiper';
 
 const projects = [
   {
@@ -20,6 +19,8 @@ const projects = [
     source: 'https://github.com/hhtetwei/Cafes-In-Town-MERN',
     duration: 1.5,
     name: 'Cafe In Town MERN',
+    description:
+      'Cafes in Town is a web application that helps users discover and explore cafes in different locations. Built with Next.js for the frontend, it ensures fast performance and server-side rendering, while the backend is powered by Node.js and Express.js for a scalable and efficient architecture. MongoDB is used as the database to manage and store cafe-related data, and the platform is deployed on Vercel for seamless hosting and deployment. This project demonstrates my expertise in developing full-stack applications using the MERN stack with a focus on performance and user experience.',
   },
   {
     image: '/image/pj2.jpg',
@@ -27,6 +28,8 @@ const projects = [
     source: 'https://github.com/hhtetwei/bmi_calculator',
     duration: 1,
     name: 'BMI Calculator',
+    description:
+      'BMI Calculator is a web application that allows users to calculate their Body Mass Index (BMI) based on height and weight inputs. Developed using Next.js, it offers a fast and responsive user experience with server-side rendering for optimal performance. The application is deployed on Vercel, ensuring seamless accessibility and scalability. This project highlights my ability to build interactive and efficient web applications with a focus on usability and accuracy.',
   },
   {
     image: '/image/pj3.jpg',
@@ -34,6 +37,8 @@ const projects = [
     source: 'https://github.com/hhtetwei/Self_Management_MERN',
     duration: 2,
     name: 'Self-Management',
+    description:
+      'Self Management is a web application designed to help users track and manage their personal tasks and goals efficiently. Built with Next.js for the frontend, it ensures a smooth and responsive user experience, while the backend, powered by Node.js and Express.js, provides a robust and scalable architecture. MongoDB is used as the database to store and manage user data, and the platform is deployed on Vercel for seamless hosting. This project demonstrates my ability to develop full-stack applications using the MERN stack with a focus on productivity and user engagement.',
   },
   {
     image: '/image/pj4.jpg',
@@ -41,6 +46,8 @@ const projects = [
     source: 'https://github.com/hhtetwei/nextjs-app-router-project',
     duration: 1,
     name: 'SEO Landing Page App Router',
+    description:
+      'Next.js App Router Beta is a web application built using Next.js, leveraging the latest app router features for improved performance and scalability. It offers a seamless and dynamic user experience with optimized routing and server-side rendering. Deployed on Vercel, the platform ensures fast loading times and efficient resource management. This project highlights my expertise in modern Next.js development, focusing on performance, flexibility, and best practices.',
   },
 ];
 
@@ -445,12 +452,7 @@ export default function Home() {
                       <div className="mt-5">
                         Project Duration - {p.duration} weeks
                       </div>
-                      <div className="mt-3">
-                        This full-stack application was created mainly using
-                        Next Js for the front end and Node.js for the back end.
-                        You can look up cafes and provide reviews. Used UI
-                        libraries such as MUI and tailwind.
-                      </div>
+                      <div className="mt-3 text-justify">{p.description}</div>
                       <div className="mt-3">
                         <Link href={p.source} passHref target="_blank">
                           <button className="text-buttontxtClr flex rounded-lg gap-2">
