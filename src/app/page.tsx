@@ -28,6 +28,7 @@ const projects = [
     source: 'https://github.com/hhtetwei/bmi_calculator',
     duration: 1,
     name: 'BMI Calculator',
+    tags: ['Next.js', 'Node.js', 'Express.js', 'MongoDB'],
     description:
       'BMI Calculator is a web application that allows users to calculate their Body Mass Index (BMI) based on height and weight inputs. Developed using Next.js, it offers a fast and responsive user experience with server-side rendering for optimal performance. The application is deployed on Vercel, ensuring seamless accessibility and scalability. This project highlights my ability to build interactive and efficient web applications with a focus on usability and accuracy.',
   },
@@ -37,6 +38,7 @@ const projects = [
     source: 'https://github.com/hhtetwei/Self_Management_MERN',
     duration: 2,
     name: 'Self-Management',
+    tags: ['Next.js', 'Node.js', 'Express.js', 'MongoDB'],
     description:
       'Self Management is a web application designed to help users track and manage their personal tasks and goals efficiently. Built with Next.js for the frontend, it ensures a smooth and responsive user experience, while the backend, powered by Node.js and Express.js, provides a robust and scalable architecture. MongoDB is used as the database to store and manage user data, and the platform is deployed on Vercel for seamless hosting. This project demonstrates my ability to develop full-stack applications using the MERN stack with a focus on productivity and user engagement.',
   },
@@ -46,8 +48,19 @@ const projects = [
     source: 'https://github.com/hhtetwei/nextjs-app-router-project',
     duration: 1,
     name: 'SEO Landing Page App Router',
+    tags: ['Next.js', 'Express.js', 'MongoDB'],
     description:
       'Next.js App Router Beta is a web application built using Next.js, leveraging the latest app router features for improved performance and scalability. It offers a seamless and dynamic user experience with optimized routing and server-side rendering. Deployed on Vercel, the platform ensures fast loading times and efficient resource management. This project highlights my expertise in modern Next.js development, focusing on performance, flexibility, and best practices.',
+  },
+
+  {
+    image: '/image/books2.jpg',
+    source: 'https://github.com/hhtetwei/books-api',
+    duration: 3,
+    name: 'Books-Api',
+    tags: ['Nest.js', 'Prisma', 'Jest', 'PostgreSQL'],
+    description:
+      'Books API is a backend application built using NestJS, leveraging Docker for containerized deployment and Prisma as the TypeORM-like ORM for PostgreSQL. It provides a robust API for managing books, including create, update, and delete operations, along with user authentication. The project follows best practices with Jest for unit testing and includes end-to-end (E2E) testing for reliability. Designed for scalability and maintainability, this API showcases my expertise in modern backend development with NestJS, Prisma, and Docker.',
   },
 ];
 
@@ -469,22 +482,24 @@ export default function Home() {
                           </button>
                         </Link>
                       </div>
-                      <div className="mt-3">
-                        <Link href={p.url} passHref target="_blank">
-                          <button className="text-buttontxtClr flex rounded-lg gap-2">
-                            <div className="font-bold">View Demo</div>
-                            <div>
-                              <Image
-                                src="/image/arrow.svg"
-                                alt=""
-                                width={20}
-                                height={20}
-                                className="rounded-xl mt-0.5"
-                              />
-                            </div>
-                          </button>
-                        </Link>
-                      </div>
+                      {p.url && (
+                        <div className="mt-3">
+                          <Link href={p.url} passHref target="_blank">
+                            <button className="text-buttontxtClr flex rounded-lg gap-2">
+                              <div className="font-bold">View Demo</div>
+                              <div>
+                                <Image
+                                  src="/image/arrow.svg"
+                                  alt=""
+                                  width={20}
+                                  height={20}
+                                  className="rounded-xl mt-0.5"
+                                />
+                              </div>
+                            </button>
+                          </Link>
+                        </div>
+                      )}
                     </Card>
                   );
                 })}
