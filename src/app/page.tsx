@@ -56,7 +56,7 @@ const projects = [
   {
     image: '/image/books2.jpg',
     source: 'https://github.com/hhtetwei/books-api',
-    duration: 3,
+    duration: 2,
     name: 'Books-Api',
     tags: ['Nest.js', 'Prisma', 'Jest', 'PostgreSQL'],
     description:
