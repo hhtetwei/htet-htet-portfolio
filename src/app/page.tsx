@@ -93,7 +93,7 @@ export default function Home() {
 
   return (
     <div className="w-full h-full overflow-hidden dark:text-basetextClr dark:bg-black">
-      <div className="relative md:hidden s:hidden lg:hidden xxs:hidden block overflow-hidden">
+      <div className="relative md:hidden s:hidden xxs:hidden lg:hidden block overflow-hidden">
         <video
           controls
           preload="none"
@@ -209,11 +209,11 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-full h-full top-20 relative md:block sm:block s:block xs:block hidden overflow-hidden">
-        <div className="absolute md:-top-10 md:left-20 md:w-80 md:h-80 bg-boxAClr s:w-60 s:h-60 s:-top-5 s:left-5 z-0"></div>
+      <div className="w-full h-full top-20 relative md:block sm:block s:block xs:block lg:block hidden overflow-hidden">
+        <div className="absolute md:-top-10 md:left-20 md:w-80 md:h-80 lg:w-80 lg:h-80 lg:top-12 lg:left-32 bg-boxAClr s:w-60 s:h-60 s:-top-5 s:left-5 z-0"></div>
 
-        <div className="absolute md:top-52 md:right-24 md:w-80 md:h-80 bg-boxBClr s:w-60 s:h-60 s:right-3 s:top-24 z-0 "></div>
-        <div className="md:w-[60%] s:w-[80%] mt-20 md:translate-x-40  s:translate-x-11 z-50">
+        <div className="absolute md:top-52 md:right-24 md:w-80 md:h-80 lg:w-80 lg:h-80 lg:top-1/3 lg:mt-10 lg:right-32 bg-boxBClr s:w-60 s:h-60 s:right-3 s:top-24 z-0 "></div>
+        <div className="md:w-[60%] s:w-[80%] lg:w-[60%] lg:translate-x-56 mt-20 md:translate-x-40  s:translate-x-11 z-50">
           <img
             src="/image/hhw.jpg"
             alt="Your Image"
@@ -313,73 +313,74 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="hidden xl:block lg:block twoXL:block">
+      <div className="hidden xl:block twoXL:block threeXL:block fourXL:block fiveXL:block">
         <div className="w-full justify-between flex mt-20 p-[1rem]">
-          <div className="w-[45%] h-72 flex justify-center relative">
-            <div className="bg-baseClr rounded-3xl w-[70%]">
-              <Image
-                src="/image/lofi.webp"
-                alt=""
-                width={500}
-                height={500}
-                className="rounded-xl w-full flex justify-end mt-4"
-              />
-
-              <div className="relative bg-baseClr rounded-3xl">
+          <div className="flex flex-col w-[45%]">
+            <div className="w-full flex justify-center relative">
+              <div className="bg-baseClr rounded-3xl">
                 <Image
-                  src="/image/experience.gif"
+                  src="/image/lofi.webp"
                   alt=""
                   width={500}
                   height={500}
-                  className="rounded-xl w-full flex justify-end mt-20"
+                  className="rounded-xl w-full flex justify-end mt-4"
                 />
+              </div>
 
-                <div className="absolute left-3/4 top-2/3 transform translate-x-10">
-                  <div className="w-40 h-20 bg-buttontxtClr mb-4 rounded-lg">
-                    <div className="flex flex-col justify-center p-2">
-                      <span className="mt-2 font-bold flex gap-1">
-                        <div>
-                          <Image
-                            src="/image/star.svg"
-                            alt=""
-                            width={20}
-                            height={20}
-                          />
-                        </div>
-                        <span className="text-grey">Experience</span>
-                      </span>
-                      <span className="font-bold text-xl flex justify-center text-textClr">
-                        2 Years
-                      </span>
-                    </div>
+              <div className="absolute -left-3 top-36 transform -translate-y-28 threeXL:translate-x-36">
+                <div className="w-40 h-20 bg-buttontxtClr mb-4 rounded-lg">
+                  <div className="flex flex-col justify-center p-2 ">
+                    <span className="mt-2 font-bold flex gap-1">
+                      <div>
+                        <Image
+                          src="/image/star.svg"
+                          alt=""
+                          width={20}
+                          height={20}
+                          className=""
+                        />
+                      </div>
+                      <span className="text-grey">Project Count</span>
+                    </span>
+                    <span className="font-bold text-xl flex justify-center text-textClr">
+                      10+ Done
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="absolute -left-3 top-36 transform -translate-y-28">
-              <div className="w-40 h-20 bg-buttontxtClr mb-4 rounded-lg">
-                <div className="flex flex-col justify-center p-2 ">
-                  <span className="mt-2 font-bold flex gap-1">
-                    <div>
-                      <Image
-                        src="/image/star.svg"
-                        alt=""
-                        width={20}
-                        height={20}
-                        className=""
-                      />
-                    </div>
-                    <span className="text-grey">Project Count</span>
-                  </span>
-                  <span className="font-bold text-xl flex justify-center text-textClr">
-                    10+ Done
-                  </span>
+            <div className="relative rounded-3xl w-full flex justify-center">
+              <Image
+                src="/image/experience.gif"
+                alt=""
+                width={500}
+                height={500}
+                className="rounded-xl flex justify-end mt-20"
+              />
+
+              <div className="absolute left-3/4 top-2/3 transform translate-x-10 threeXL:-translate-x-10">
+                <div className="w-40 h-20 bg-buttontxtClr mb-4 rounded-lg">
+                  <div className="flex flex-col justify-center p-2">
+                    <span className="mt-2 font-bold flex gap-1">
+                      <div>
+                        <Image
+                          src="/image/star.svg"
+                          alt=""
+                          width={20}
+                          height={20}
+                        />
+                      </div>
+                      <span className="text-grey">Experience</span>
+                    </span>
+                    <span className="font-bold text-xl flex justify-center text-textClr">
+                      2 Years
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-
           <div className="w-[50%] flex justify-start p-[1rem]">
             <div className="flex flex-col mr-10" id="myexp">
               <div className="font-bold text-2xl text-baseClr ">
@@ -438,19 +439,19 @@ export default function Home() {
         <Experience />
       </div>
 
-      <div className="xl:mt-20">
-        <div id="projects" className="w-full flex flex-col p-[2rem]">
-          <span className="lg:mt-20 lg:text-3xl flex lg:justify-center text-3xl">
+      <div className="">
+        <div id="projects" className="w-full flex flex-col p-[2rem] mt-10">
+          <span className="lg:text-3xl flex lg:justify-center text-3xl">
             Here&apos;s my recent work projects
           </span>
 
           <div className="flex mt-10 mb-10 ss:flex-col s:flex-col xs:flex-col">
-            <div className="w-full flex flex-wrap justify-around lg:m-5 gap-10">
+            <div className="w-full grid xl:grid-cols-3 twoXL:grid-cols-3 lg:m-5 lg:grid lg:grid-cols-2 threeXL:grid-cols-3 fourXL:grid-cols-3 fiveXL:grid-cols-3 gap-5">
               {projects &&
                 projects.map((p, idx) => {
                   return (
                     <Card
-                      className="w-[30%] p-5 border border-grey s:w-full sm:w-full md:w-full"
+                      className="w-full lg:w-full p-5 border border-grey s:w-full sm:w-full md:w-full"
                       key={idx}
                     >
                       <div>
@@ -508,7 +509,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="hidden xl:block twoXL:block threeXL:block fourXL:block fiveXL:block">
+      <div className="hidden xl:block twoXL:block threeXL:block fourXL:block fiveXL:block lg:block">
         <div className="bg-buttontxtClr flex flex-col">
           <div className="flex flex-col mt-10 mb-10">
             <span className="flex s:flex-wrap justify-center text-2xl s:text-xl text-textClr">

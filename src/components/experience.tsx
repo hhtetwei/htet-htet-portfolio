@@ -38,13 +38,13 @@ export const Experience = () => {
         </div>
       </div>
 
-      <div className="relative rounded-3xl">
+      <div className="relative rounded-3xl lg:flex lg:justify-center">
         <Image
           src="/image/experience.gif"
           alt=""
           width={500}
           height={500}
-          className="rounded-xl w-full flex justify-end mt-20"
+          className="rounded-xl w-full lg:w-[80%] flex justify-end mt-20"
         />
 
         <div className="absolute left-3/4 top-2/3 s:left-2/4 transform translate-x-10">
@@ -64,7 +64,7 @@ export const Experience = () => {
         </div>
       </div>
 
-      <div className="mt-5 text-lg text-justify">
+      <div className="mt-20 text-lg text-justify">
         <div className="text-md font-bold">Full-Stack Software Engineer</div>
         <span className="mt-2">
           I designed and developed RESTful APIs using Node.js, Express.js, and
