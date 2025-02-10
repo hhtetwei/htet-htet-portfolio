@@ -17,7 +17,7 @@ const projects = [
     image: '/image/pj1.jpg',
     url: 'https://cafes-in-town-mern.vercel.app/',
     source: 'https://github.com/hhtetwei/Cafes-In-Town-MERN',
-    duration: 1.5,
+    duration: [1.5, 0],
     name: 'Cafe In Town MERN',
     description:
       'Cafes in Town is a web application that helps users discover and explore cafes in different locations. Built with Next.js for the frontend, it ensures fast performance and server-side rendering, while the backend is powered by Node.js and Express.js for a scalable and efficient architecture. MongoDB is used as the database to manage and store cafe-related data, and the platform is deployed on Vercel for seamless hosting and deployment. This project demonstrates my expertise in developing full-stack applications using the MERN stack with a focus on performance and user experience.',
@@ -26,7 +26,7 @@ const projects = [
     image: '/image/pj2.jpg',
     url: 'https://bmi-calculator-nine-gamma.vercel.app/',
     source: 'https://github.com/hhtetwei/bmi_calculator',
-    duration: 1,
+    duration: [1, 0],
     name: 'BMI Calculator',
     tags: ['Next.js', 'Node.js', 'Express.js', 'MongoDB'],
     description:
@@ -36,7 +36,7 @@ const projects = [
     image: '/image/pj3.jpg',
     url: 'https://self-management-mern.vercel.app/',
     source: 'https://github.com/hhtetwei/Self_Management_MERN',
-    duration: 2,
+    duration: [2, 0],
     name: 'Self-Management',
     tags: ['Next.js', 'Node.js', 'Express.js', 'MongoDB'],
     description:
@@ -46,7 +46,7 @@ const projects = [
     image: '/image/pj4.jpg',
     url: 'https://nextjs-app-router-beta.vercel.app/',
     source: 'https://github.com/hhtetwei/nextjs-app-router-project',
-    duration: 1,
+    duration: [1, 0],
     name: 'SEO Landing Page App Router',
     tags: ['Next.js', 'Express.js', 'MongoDB'],
     description:
@@ -56,11 +56,21 @@ const projects = [
   {
     image: '/image/books2.jpg',
     source: 'https://github.com/hhtetwei/books-api',
-    duration: 2,
+    duration: [2, 0],
     name: 'Books-Api',
     tags: ['Nest.js', 'Prisma', 'Jest', 'PostgreSQL'],
     description:
       'Books API is a backend application built using NestJS, leveraging Docker for containerized deployment and Prisma as the TypeORM-like ORM for PostgreSQL. It provides a robust API for managing books, including create, update, and delete operations, along with user authentication. The project follows best practices with Jest for unit testing and includes end-to-end (E2E) testing for reliability. Designed for scalability and maintainability, this API showcases my expertise in modern backend development with NestJS, Prisma, and Docker.',
+  },
+
+  {
+    image: '/image/flag.png',
+    source: 'https://github.com/hhtetwei/Flag-Guessing-Game',
+    duration: [0, 2],
+    name: 'Flag-Guessing-Game',
+    tags: ['Next.js', 'Chakra UI', 'Typescript'],
+    description:
+      'Flag Game is an interactive web application built with Next.js and TypeScript, designed to test and enhance user knowledge of country flags. It leverages a RESTful API as the backend data source, dynamically fetching flag data for each round. The application features a real-time timer for each round, ensuring a competitive and engaging experience, along with a score-tracking system that records and displays user performance. The project follows modern front-end best practices, utilizing Tailwind CSS and Chakra UI for responsive styling and efficient UI design',
   },
 ];
 
@@ -464,7 +474,9 @@ export default function Home() {
                         />
                       </div>
                       <div className="mt-5">
-                        Project Duration - {p.duration} weeks
+                        Project Duration -{' '}
+                        {p.duration[0] > 0 ? `${p.duration[0]} weeks ` : ''}
+                        {p.duration[1] > 0 ? `${p.duration[1]} days` : ''}
                       </div>
                       <div className="mt-3 text-justify">{p.description}</div>
                       <div className="mt-3">
