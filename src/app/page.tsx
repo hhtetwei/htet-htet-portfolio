@@ -65,6 +65,7 @@ const projects = [
 
   {
     image: '/image/flag.png',
+    url: 'https://flag-guessing-game-oy4f.vercel.app/',
     source: 'https://github.com/hhtetwei/Flag-Guessing-Game',
     duration: [0, 2],
     name: 'Flag-Guessing-Game',
